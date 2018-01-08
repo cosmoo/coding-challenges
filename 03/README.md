@@ -1,6 +1,6 @@
 # Challenge 03 - MySQL
 
-# Database Structure
+## Database Structure
 You are given one table:
 
 ```mysql
@@ -11,5 +11,5 @@ CREATE TABLE customers (
 );
 ```
 
-# Problem Statement
+## Problem Statement
 Find all the customers whose first and last names are not unique in our database, as well as the number of times each first and last name pair appears in our database.
