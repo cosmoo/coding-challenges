@@ -41,28 +41,28 @@ class OffsetEncodingAlgorithm implements EncodingAlgorithm
 
         $ciphertext = "";
         $constArr = str_split(self::CHARACTERS);
-  	    $textArr = str_split($text);        
-  	    $pos = 0;
-  	      
+        $textArr = str_split($text);        
+        $pos = 0;
+        
         for ($j = 0; $j < count($textArr); $j++) {
             $char = $textArr[$j];			
             if (preg_match('/[^a-zA-Z\d]/', $char)) {
-  				      $ciphertext .= $char; 
+                $ciphertext .= $char; 
             } else {
                 for ($i = 0; $i < count($constArr); $i++) {
                     if ($char == $constArr[$i]) {
                         if (($this->offset + $i) >= count($constArr)) {
                             if ($this->offset < 26) { 
-                          	   $pos = $this->offset - 1;
+                                $pos = $this->offset - 1;
                             } else {
-  								             $pos = $i - $this->offset;
-  							            }
-  						          } else {
-  							            $pos = $this->offset + $i;
-  						          }
-                      	$ciphertext .= $constArr[$pos]; 
-                  	}
-  	            }            
+                                $pos = $i - $this->offset;
+                            }
+                        } else {
+                            $pos = $this->offset + $i;
+                        }
+                        $ciphertext .= $constArr[$pos]; 
+                    }
+                }            
             }                     
         }
         return $ciphertext;
