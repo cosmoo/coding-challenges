@@ -16,7 +16,8 @@ class SubstitutionEncodingAlgorithm implements EncodingAlgorithm
      */
     public function __construct(array $substitutions)
     {
-        $this->substitutions = array();
+        //$this->substitutions = array();
+        $this->substitutions = $substitutions;
     }
 
     /**
@@ -35,6 +36,17 @@ class SubstitutionEncodingAlgorithm implements EncodingAlgorithm
          * @todo: Implement it
          */
 
-        return '';
+        print_r($this->substitutions);
+        $subPair = array_map('strval', $this->substitutions);
+        
+        if (preg_match('/[A-Z]/', $text)) {
+            $subPair = array_map('strtoupper', $subPair);
+        }
+        
+        foreach ($subPair as $key => $value) {
+            $text = strtr($text, array($value[0] => $value[1], $value[1] => $value[0]));
+        }
+        
+        return $text;
     }
 }
